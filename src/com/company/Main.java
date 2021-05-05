@@ -4,8 +4,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+    public static void isString(Object e) throws isString {
+        if(e instanceof String){
+            throw new isString();
+        }
+    }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
          Scanner scanner = new Scanner(System.in);
         int randomNumber = (int) Math.round(Math.random() * 20 + 1);
         int count = 0;
@@ -15,34 +20,35 @@ while(count < 6){
 
     try{
         input = scanner.nextInt();
+        isString((Object) input);
         if(input > 20 || input < 0){
             System.out.println("The number is out of boundary. Please select a number between 1 and 20");
             continue;
         }
-        count++;
         if(randomNumber < input){
             System.out.println("The number is too high");
+            count++;
         }else if(randomNumber > input){
             System.out.println("The number is too low");
+            count++;
         }else if(input == randomNumber){
             System.out.println("YOU WON!");
             break;
         }
 
-    }catch(InputMismatchException e){
-        System.out.println("This is the InputMismatchException E");
+    }catch(isString e){
         System.out.println(e.getMessage());
-        break;
-    }
-    catch(Exception e){
-        System.out.println("This is the general E");
-        System.out.println(e.getMessage());
-        break;
     }
 
+    catch(Exception e){
+        System.out.println("Your input should be a number");
+        scanner.nextLine();
+    }
+
+}
+if(count == 6){
     System.out.println("\nYou guessed wrong for 6 times! Game over");
 }
-
 
     }
 }
